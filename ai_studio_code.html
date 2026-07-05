@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Romantic Proposal</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Favicon (replace with your actual icon) -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23e91e63' d='M50 10a40 40 0 1 0 0 80 40 40 0 0 0 0-80zm0 15a35 35 0 1 1 0 70 35 35 0 0 1 0-70zm0 10a30 30 0 1 0 0 60 30 30 0 0 0 0-60zm0 10a20 20 0 1 0 0 40 20 20 0 0 0 0-40z'/%3E%3C/svg%3E" type="image/svg+xml">
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- CDN - HTML2Canvas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <!-- CDN - Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+    <!-- Hidden audio for autoplay after interaction -->
+    <audio id="backgroundMusic" loop>
+        <source src="https://pixabay.com/download/music/audio/2023/12/03/royalty-free-music-177990.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <div class="container">
+
+        <!-- Welcome Page -->
+        <section id="welcomePage" class="page active">
+            <h1 class="title-welcome">Will you marry me?</h1>
+            <p class="subtitle">Open to find out!</p>
+            <button class="neon-button open-button">Open</button>
+        </section>
+
+        <!-- Loading Page -->
+        <section id="loadingPage" class="page">
+            <div class="loading-animation"></div>
+        </section>
+
+        <!-- Memory Page -->
+        <section id="memoryPage" class="page">
+            <div class="slideshow-container">
+                <div class="slides">
+                    <img src="https://picsum.photos/1200/800?random=1" alt="Memory 1">
+                    <img src="https://picsum.photos/1200/800?random=2" alt="Memory 2">
+                    <img src="https://picsum.photos/1200/800?random=3" alt="Memory 3">
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar"></div>
+                </div>
+            </div>
+            <button class="neon-button take

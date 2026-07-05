@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For You ❤️</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Canvas Confetti & html2canvas -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <!-- Background Audio (Placeholder for romantic piano) -->
+    <audio id="bg-music" loop>
+        <source src="https://cdn.pixabay.com/download/audio/2022/05/16/audio_b2f90184ce.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Background Elements -->
+    <div id="particles-container"></div>
+
+    <div class="app-container">
+        
+        <!-- 1. Welcome Page -->
+        <section id="sec-welcome" class="page active">
+            <div class="glass-card welcome-card">
+                <h1 class="glowing-text">Someone has something special to tell you... ❤️</h1>
+                <button class="neon-btn" onclick="startExperience()">Open</button>
+            </div>
+        </section>
+
+        <!-- 2. Loading Page -->
+        <section id="sec-loading" class="page">
+            <div class="glass-card loading-card">
+                <div class="animated-heart-loader">❤️</div>
+                <h2>Preparing something from my heart...</h2>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="progress-bar"></div>
+                </div>
+                <p id="progress-text">0%</p>
+            </div>
+        </section>
+
+        <!-- 3. Memory Page -->
+        <section id="sec-memory" class="page">
+            <div class="glass-card memory-card">
+                <h2 class="script-font glowing-text">Beautiful Memories</h2>
+                <div class="slideshow-container">
+                    <img id="slide-img" src="https://images.unsplash.com/photo-1518192167132-9c49f5690f59?auto=format&fit=crop&w=800&q=80" alt="Memory">
+                </div>
+                <p id="slide-caption" class="caption">Every moment with you is magic...</p>
+                <button class="neon-btn" onclick="nextSlide()">Next ❤️</button>
+            </div>
+        </section>
+
+        <!-- 4. Hindi Message Page -->
+        <section id="sec-hindi" class="page">
+            <div class="glass-card hindi-card">
+                <div class="hindi-text">
+                    <p>मैं ये बात अपने दिल से कह रहा हूँ।</p>
+                    <p>शायद मैं अपने एहसास शब्दों में पूरी तरह बयां न कर पाऊँ, लेकिन इतना ज़रूर कहना चाहता हूँ कि मैं तुमसे बहुत प्यार करता हूँ। मुझे ऐसा लगता है कि जितना सच्चा प्यार मैं तुमसे करता हूँ, शायद उतना कोई और कभी न कर पाए।</p>
+                    <p>मेरे लिए तुम अँधेरे में जलते हुए एक दीये की तरह हो, जो हर मुश्किल में उम्मीद की रोशनी देता है।</p>
+                    <p>तुम्हारा जवाब हाँ हो या ना, उससे मेरी भावनाएँ नहीं बदलेंगी। अगर तुम मुझे मना भी कर दोगी, तो दुख ज़रूर होगा, लेकिन मेरा प्यार तुम्हारे लिए कभी कम नहीं होगा। बल्कि शायद पहले से भी ज़्यादा हो जाएगा, क्योंकि सच्चा प्यार किसी जवाब पर निर्भर नहीं करता।</p>
+                    <p>मैं तुमसे बस एक ही बात कहना चाहता हूँ—कृपया मुझे एक मौका दे दो। मैं वादा करता हूँ कि हमेशा तुम्हारी इज़्ज़त करूँगा, तुम्हारा साथ दूँगा, तुम्हें कभी जानबूझकर दुख नहीं दूँगा और हर परिस्थिति में तुम्हारे साथ खड़ा रहूँगा। तुम्हारी खुशी मेरे लिए सबसे ज़्यादा मायने रखेगी।</p>
+                    <p>बस एक बार मुझ पर भरोसा करके देखो। अगर मैं तुम्हारी उम्मीदों पर खरा न उतरूँ, तो जो फैसला तुम्हारा होगा, मुझे मंज़ूर होगा।</p>
+                    <p>चाहे तुम्हारा जवाब जो भी हो, मैं हमेशा तुम्हारी खुशियों की दुआ करूँगा।</p>
+                    <p class="highlight">बस... एक बार। ❤️</p>
+                    <p class="signature">– हमेशा तुम्हारा चाहने वाला</p>
+                </div>
+                <button class="neon-btn mt-20" onclick="goToLetter()">Next</button>
+            </div>
+        </section>
+
+        <!-- 5. Love Letter Page -->
+        <section id="sec-letter" class="page">
+            <div class="wax-seal" id="wax-seal">
+                <div class="seal-inner">Seal</div>
+            </div>
+            <div class="glass-card letter-card hidden-content" id="letter-content">
+                <p id="typewriter-text"></p>
+                <button class="neon-btn mt-20" id="letter-next-btn" style="display:none;" onclick="goToCountdown()">Next</button>
+            </div>
+        </section>
+
+        <!-- 6. Countdown Page -->
+        <section id="sec-countdown" class="page">
+            <div class="countdown-container">
+                <h1 id="countdown-number" class="glowing-text">3 ❤️</h1>
+            </div>
+        </section>
+
+        <!-- 7. Proposal Page -->
+        <section id="sec-proposal" class="page">
+            <div id="proposal-content" class="glass-card proposal-card">
+                <div class="giant-heart heartbeat">❤️</div>
+                <h1 class="glowing-text script-font title-large">Will You Be My Girlfriend? ❤️</h1>
+                
+                <div class="button-group">
+                    <button class="neon-btn btn-yes" onclick="sayYes()">❤️ Yes</button>
+                    <button class="neon-btn btn-no" id="btn-no">💔 No</button>
+                </div>
+            </div>
+            <!-- Yay Screen -->
+            <div id="yay-content" class="glass-card hidden-content">
+                <h1 class="glowing-text script-font title-large yay-text">YAY!! ❤️<br>You just made me the happiest person alive!</h1>
+                <div class="teddy-animation">🧸💖</div>
+            </div>
+        </section>
+
+        <!-- 8. Celebration Page -->
+        <section id="sec-celebration" class="page">
+            <div class="glass-card celebration-card" id="capture-area">
+                <div class="celebration-graphics">
+                    <div class="silhouette">💑</div>
+                    <div class="glowing-ring"></div>
+                    <div class="teddy-holding-heart">🧸❤️</div>
+                </div>
+                <h2 class="script-font glowing-text">I promise to always respect you, support you, and make beautiful memories together. ❤️</h2>
+            </div>
+            <div class="celebration-buttons">
+                <button class="neon-btn" onclick="takeScreenshot()">📸 Take Screenshot</button>
+                <!-- Changed to navigate to Jatin's final page -->
+                <button class="neon-btn" onclick="navigateTo('sec-jatin')">💌 One Last Message</button>
+            </div>
+        </section>
+
+        <!-- 9. Jatin's Cute Final Message Page (NEW!) -->
+        <section id="sec-jatin" class="page">
+            <div class="glass-card jatin-card">
+                <h2 class="script-font glowing-text title-large">Just One More Thing...</h2>
+                <div class="cute-message-box">
+                    <p>No matter where life takes us, my heart will always beat just for you. Thank you for making my world so incredibly beautiful. I promise to keep that gorgeous smile on your face forever and always.</p>
+                </div>
+                
+                <div class="jatin-signature">
+                    <p class="script-font glowing-text">Always yours,</p>
+                    <h1 class="script-font glowing-text signature-name">Jatin ❤️</h1>
+                </div>
+
+                <div class="celebration-buttons mt-20">
+                    <button class="neon-btn" onclick="replayAnimation()">🔄 Replay Our Story</button>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
